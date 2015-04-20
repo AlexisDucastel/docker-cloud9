@@ -10,31 +10,31 @@ This repository contains Dockerfile of Cloud9 IDE for Docker's automated build p
 
 ## Install Docker.
 
-Download automated build from public Docker Hub Registry: docker pull kdelfour/cloud9-docker
+Download automated build from public Docker Hub Registry: docker pull hansd/cloud9
 
-(alternatively, you can build an image from Dockerfile: docker build -t="kdelfour/cloud9-docker" github.com/kdelfour/cloud9-docker)
+(alternatively, you can build an image from Dockerfile: docker build -t="hansd/cloud9" github.com/hans-d/docker-cloud9)
 
 ## Usage
 
-    docker run -it -d -p 8181:8181 kdelfour/cloud9-docker
+    docker run -it -d -p 8181:8181 -e USER=user -e PASS=secret hansd/cloud9
     
 You can add a workspace as a volume directory with the argument *-v /your-path/workspace/:/workspace/* like this :
 
-    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/workspace/ kdelfour/cloud9-docker
+    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/workspace/ -e USER=user -e PASS=secret hansd/cloud9
     
 ## Build and run with custom config directory
 
 Get the latest version from github
 
-    git clone https://github.com/kdelfour/cloud9-docker
-    cd cloud9-docker/
+    git clone https://github.com/hans-d/docker-cloud9
+    cd docker-cloud9/
 
 Build it
 
-    sudo docker build --force-rm=true --tag="$USER/cloud9-docker:latest" .
+    docker build --force-rm=true --tag="$USER/cloud9:latest" .
     
 And run
 
-    sudo docker run -d -p 8181:8181 -v /your-path/workspace/:/workspace/ $USER/cloud9-docker:latest
-    
+    docker run -it -d -p 8181:8181 -v /your-path/workspace/:/workspace/ -e USER=user -e PASS=secret $USER/cloud9
+
 Enjoy !!    
